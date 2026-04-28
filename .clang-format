@@ -1,0 +1,112 @@
+Language: Cpp
+
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass: true
+  AfterControlStatement: true
+  AfterCaseLabel: true
+  AfterExternBlock: true
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: true
+  AfterStruct: true
+  AfterUnion: true
+  BeforeCatch: true
+  BeforeElse: true
+  BeforeWhile: true
+  IndentBraces: false
+  SplitEmptyFunction: false
+  SplitEmptyRecord: false
+  SplitEmptyNamespace: false
+
+IndentCaseBlocks: false
+IndentCaseLabels: true
+
+NamespaceIndentation: All
+
+ColumnLimit: 120
+IndentWidth: 4
+UseTab: Never # Tabulation characters are not allowed and shall be replaced by space characters.
+SpaceAfterCStyleCast: true # C style casts shall be followed by one and only one space character.
+SortIncludes: Never # Alphabetical sorting
+
+IndentAccessModifiers: false
+AccessModifierOffset: -4
+EmptyLineBeforeAccessModifier: Always
+EmptyLineAfterAccessModifier: Never
+
+BinPackArguments: true
+  # true:
+  # void f() {
+  #   f(aaaaaaaaaaaaaaaaaaaa, aaaaaaaaaaaaaaaaaaaa,
+  #     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa);
+  # }
+
+  # false:
+  # void f() {
+  #   f(aaaaaaaaaaaaaaaaaaaa,
+  #     aaaaaaaaaaaaaaaaaaaa,
+  #     aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa);
+  # }
+
+BinPackParameters: true
+  # true:
+  # void f(int aaaaaaaaaaaaaaaaaaaa, int aaaaaaaaaaaaaaaaaaaa,
+  #        int aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa) {}
+
+  # false:
+  # void f(int aaaaaaaaaaaaaaaaaaaa,
+  #        int aaaaaaaaaaaaaaaaaaaa,
+  #        int aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa) {}
+
+# If a function call or braced initializer list doesn’t fit on a line, 
+# allow putting all arguments onto the next line, even if BinPackArguments is false.
+AllowAllArgumentsOnNextLine: true
+  # true:
+  # callFunction(
+  #     a, b, c, d);
+
+  # false:
+  # callFunction(a,
+  #              b,
+  #              c,
+  #              d);
+
+# If the function declaration doesn’t fit on a line, 
+# allow putting all parameters of a function declaration onto the next line, even if BinPackParameters is false.
+AllowAllParametersOfDeclarationOnNextLine: true
+  # true:
+  # void myFunction(
+  #     int a, int b, int c, int d, int e);
+
+  # false:
+  # void myFunction(int a,
+  #                 int b,
+  #                 int c,
+  #                 int d,
+  #                 int e);
+
+# AllowShortBlocksOnASingleLine: Always
+AllowShortFunctionsOnASingleLine: Empty
+
+PointerAlignment: Left
+ReferenceAlignment: Left
+
+AlignArrayOfStructures: Left
+
+# AlignAfterOpenBracket: Align
+
+AlwaysBreakTemplateDeclarations: Yes # clang-format 19
+
+BreakBeforeTernaryOperators: true
+BreakConstructorInitializers: BeforeColon
+PackConstructorInitializers: NextLine
+# BreakFunctionDefinitionParameters: true # clang-format 19
+BreakInheritanceList: BeforeColon
+
+### Preprocessor configuration ###
+PPIndentWidth: 4
+IndentPPDirectives: BeforeHash
+
+SeparateDefinitionBlocks: Always
+

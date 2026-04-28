@@ -1,0 +1,5 @@
+# Build artifacts
+build/
+
+# External dependencies
+external/

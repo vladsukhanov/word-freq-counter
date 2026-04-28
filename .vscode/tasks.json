@@ -1,0 +1,109 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "1. CMake Configure",
+            "detail": "Configures the project using the selected CMake preset",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--preset",
+                "${input:cmakePreset}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "icon": {
+                "id": "gear",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "2. CMake Build",
+            "detail": "Builds the project using the selected CMake build preset",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "--preset",
+                "${input:cmakeBuild}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiGreen"
+            }
+        },
+        {
+            "label": "3. Clean Build Directory",
+            "detail": "Removes all files from build/",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "-Command",
+                "Remove-Item -Path '${workspaceFolder}/build/*' -Recurse -Force -ErrorAction SilentlyContinue"
+            ],
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiRed"
+            }
+        },
+        {
+            "label": "4. Run freq",
+            "detail": "Runs freq(.exe) with in.txt -> out.txt",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/${input:buildFolder}/freq.exe",
+            "args": [
+                "${workspaceFolder}/lipsum.txt",
+                "${workspaceFolder}/output.txt"
+            ],
+            "problemMatcher": [],
+            "icon": {
+                "id": "play",
+                "color": "terminal.ansiBlue"
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "cmakePreset",
+            "description": "Choose CMake preset",
+            "type": "pickString",
+            "options": [
+                "win-debug-config",
+                "win-release-config",
+                "linux-debug-config",
+                "linux-release-config"
+            ],
+            "default": "win-debug-config"
+        },
+        {
+            "id": "cmakeBuild",
+            "description": "Choose CMake build",
+            "type": "pickString",
+            "options": [
+                "win-debug-build",
+                "win-release-build",
+                "linux-debug-build",
+                "linux-release-build"
+            ],
+            "default": "win-debug-build"
+        },
+        {
+            "id": "buildFolder",
+            "description": "Choose build folder to run from",
+            "type": "pickString",
+            "options": [
+                "win-debug",
+                "win-release",
+                "linux-debug",
+                "linux-release"
+            ],
+            "default": "win-debug"
+        }
+    ]
+}

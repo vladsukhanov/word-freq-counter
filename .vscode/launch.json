@@ -1,0 +1,28 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug freq",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/freq",
+            "args": [
+                "${workspaceFolder}/in.txt",
+                "${workspaceFolder}/out.txt"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "2. CMake Build"
+        }
+    ]
+}

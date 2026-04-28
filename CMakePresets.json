@@ -1,0 +1,68 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "generator": "Ninja",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "gcc",
+                "CMAKE_CXX_COMPILER": "g++"
+            }
+        },
+        {
+            "name": "win-debug-config",
+            "displayName": "Windows Debug (Ninja + GCC)",
+            "inherits": "base",
+            "binaryDir": "${sourceDir}/build/win-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "win-release-config",
+            "displayName": "Windows Release (Ninja + GCC)",
+            "inherits": "base",
+            "binaryDir": "${sourceDir}/build/win-release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "linux-debug-config",
+            "displayName": "Linux Debug (Ninja + GCC)",
+            "inherits": "base",
+            "binaryDir": "${sourceDir}/build/linux-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "linux-release-config",
+            "displayName": "Linux Release (Ninja + GCC)",
+            "inherits": "base",
+            "binaryDir": "${sourceDir}/build/linux-release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "win-debug-build",
+            "configurePreset": "win-debug-config"
+        },
+        {
+            "name": "win-release-build",
+            "configurePreset": "win-release-config"
+        },
+        {
+            "name": "linux-debug-build",
+            "configurePreset": "linux-debug-config"
+        },
+        {
+            "name": "linux-release-build",
+            "configurePreset": "linux-release-config"
+        }
+    ]
+}

@@ -5,9 +5,9 @@
             "name": "Debug freq",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/freq",
+            "program": "${workspaceFolder}/build/win-debug/freq",
             "args": [
-                "${workspaceFolder}/in.txt",
+                "${workspaceFolder}/input.txt",
                 "${workspaceFolder}/out.txt"
             ],
             "stopAtEntry": false,
@@ -21,8 +21,7 @@
                     "text": "-enable-pretty-printing",
                     "ignoreFailures": true
                 }
-            ],
-            "preLaunchTask": "2. CMake Build"
+            ]
         }
     ]
 }

@@ -47,12 +47,51 @@ $ cat out.txt
 * CMake ≥ 3.10
 * GCC ≥ 7 or Clang ≥ 5 with C++17 support
 
-## Running
+## Build
+
+List available presets:
 
 ```bash
+cmake --list-presets
+cmake --build --list-presets
+```
+
+Configure and build:
+
+```bash
+# Windows
 cmake --preset win-release-config
 cmake --build --preset win-release-build
+
+# Linux / WSL
+cmake --preset linux-release-config
+cmake --build --preset linux-release-build
+```
+
+Clean rebuild:
+
+```bash
+# Windows
 cmake --build --preset win-release-build --clean-first
 
-.\build\win-release\freq.exe [input.txt] [output.txt]
+# Linux / WSL
+cmake --build --preset linux-release-build --clean-first
 ```
+
+## Run
+
+```bash
+# Windows
+.\build\win-release\freq.exe input.txt output.txt
+
+# Linux / WSL
+./build/linux-release/freq input.txt output.txt
+```
+
+## Platform notes
+
+|                     | POSIX (Linux / macOS)          | Windows (MinGW)                                 |
+| ------------------- | ------------------------------ | ----------------------------------------------- |
+| File read           | `mmap` + `madvise(SEQUENTIAL)` | `ReadFile` + `FILE_FLAG_SEQUENTIAL_SCAN`        |
+| Sanitizers in debug | ASan + UBSan                   | Not supported by MinGW — disabled automatically |
+

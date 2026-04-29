@@ -54,9 +54,9 @@
         },
         {
             "label": "4. Run freq",
-            "detail": "Runs freq(.exe) with in.txt -> out.txt",
+            "detail": "Runs freq executable with 2 args: [input] [output]",
             "type": "shell",
-            "command": "${workspaceFolder}/build/${input:buildFolder}/freq.exe",
+            "command": "${workspaceFolder}/build/${input:buildFolder}/freq",
             "args": [
                 "${workspaceFolder}/lipsum.txt",
                 "${workspaceFolder}/output.txt"

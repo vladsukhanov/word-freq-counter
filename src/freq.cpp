@@ -290,12 +290,14 @@ int main(int argc, char* argv[])
     InputBuffer ib(inputPath);
 
     // --- 2. Parse ---
-    // map is slower than unordered_map, but it keeps keys sorted, so we won't need to sort later.
+    // map is slower than unordered_map, but it keeps keys sorted, but we sort later, 
+    // so we can use unordered_map for O(1) insertions.
     std::unordered_map<std::string, int> freq;
-    // pre-allocate ~1M buckets to avoid rehashing (assuming a large input file with many unique words)
+    // pre-allocate ~1M buckets (not nodes) to avoid rehashing (assuming a large input file with many unique words)
     freq.reserve(1 << 20);
 
-    // maybe use string_view?
+    // maybe use string_view? but we need to lowercase the words, 
+    // so we have to create new strings anyway, and string_view would complicate the code without much benefit.
     std::string word;
     word.reserve(64);
 
@@ -308,12 +310,15 @@ int main(int argc, char* argv[])
         unsigned char ch = kCharTable[static_cast<unsigned char>(*p)];
         if (ch)
         {
+            // start of a word, read until the next separator
             word.clear();
             do
             {
                 word.push_back(static_cast<char>(ch));
                 ++p;
 
+                // if we reach the end of the buffer, we should break to avoid reading out of bounds.
+                // ending buffer without a separator is a valid input, we should count the last word if it exists.
                 if (p >= end)
                 {
                     break;
@@ -323,6 +328,7 @@ int main(int argc, char* argv[])
             }
             while (ch);
 
+            // no need to use std::move(word) since SSO
             ++freq[word];
         }
         else
